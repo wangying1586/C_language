@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// 整型变量argc----程序的参数数量，包括本身
+// 字符指针数组agrv[]----每个指针指向命令行的一个字符串
+// argv[0,1,2]分别指向命令行第1,2,3个字符串
+
+int main( int argc, char *argv[] )
+{
+	// in和out声明的两个文件指针，类型为FILE*， 分别作为两个I/O流对象使用
+   	FILE *in, *out;
+	int ch;
+	
+	if( argc != 3) // 确保程序参数个数准确性
+	{
+		fprintf( stderr, "输入形式：copyfile 源文件名 目标文件名 \n");
+		exit( EXIT_FAILURE );
+	}
+	
+	// fopen rb 二进制可读形式打开第二个字符串文件， 如果为NULL 打开错误
+	if( (in = fopen( argv[1], "rb") ) == NULL)
+	{
+		// stderr：标准错误流
+		fprintf( stderr, "打不开文件: %s \n", argv[1] );
+		exit( EXIT_FAILURE );
+	}
+	
+	// fopen rb 二进制可读形式打开第三个字符串文件， 如果为NULL 打开错误
+	if( (out = fopen( argv[2], "rb") ) == NULL)
+	{
+		fprintf( stderr, "打不开文件：%s \n", argv[2] );
+		fclose( in );    //记得擦屁股
+		exit(EXIT_FAILURE );
+	}
+	
+	// getc():一次从输入流stdin读取一个字符
+	while( (ch = getc(in)) != EOF )  // EOF: 读取错误或文件读取结束
+	{
+		// putc():把字符写入到输出流stdout
+		if( putc( ch, out ) == EOF)
+		{
+			break;
+		}
+	}
+	
+	if( ferror( in ) )
+	{
+		printf("读取文件 %s 失败！\n", argv[1] );
+	}
+	
+	if( ferror( out ) )
+	{
+		printf("读取文件 %s 失败！\n", argv[2] );
+	}
+	
+	printf("成功复制1个文件！\n");
+	
+	fclose( in );
+	fclose( out );
+	
+	return 0;
+}
