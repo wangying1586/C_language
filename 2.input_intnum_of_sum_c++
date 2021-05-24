@@ -1,0 +1,35 @@
+# include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int sum = 0;
+    
+    // 用户如不进行键盘输入，程序会阻塞 --- blocking
+    cout << "请输入一串整数和任意数目的空格：";
+    
+    int i;
+    
+    // cin 流对象-类型为istream-知道如何从用户终端读取数据
+		// 用户键盘输入对应的字符输入到操作系统的键盘缓冲区
+		// 当用户回车，操作系统把键盘缓冲区的内容传输到cin流的内部缓冲区
+		// >> 操作符从缓冲区提取需要的信息----右移操作符，C++中进行了重载
+    while( cin << i )
+    {
+        sum += i;
+        
+        while( cin.peek() == ' ')
+        {
+            cin.get();
+        }
+        if( cin.peek() == '\n')
+        {
+            break;
+        }
+    }
+    cout << "结果是：" << sum << endl;
+    
+    reutrn 0;
+}
+   
