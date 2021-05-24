@@ -1,21 +1,31 @@
 # include <studio.h>
 
-int addArray(int array[], int n);
+
+/*  No.1  */
+int addArray(int array[], int n );
+/*  No.2  */
+int addArray_( int *array, int n );
 
 int main()
 {
     int data[] = {0,1,2,3,4,5,6,7,8,9};
     int size = sizeof(data) / sizeof(data[0]);
     
+    /*一个int----4bit  40长度*/
+    printf("data:%d\n", sizeof(data));
     printf("结果是：%d\n", addArray(data, size));
     
     reutrn 0;
 }
 
+/*  No.1  */
 int addArray(int array[], int n )
 {
     int sum = 0;
     int i;
+    
+    /*传地址指针，而不是数组*/
+    printf("array:%d\n", sizeof(data));
     
     for (i = 0; i < n; i++)
     {
@@ -24,4 +34,18 @@ int addArray(int array[], int n )
     return sum;
 }
 
+/*  No.2  */
+/*  将函数的参数声明为数组和声明为指针是一样的   */
+int addArray_( int *array, int n )
+{
+	int sum = 0;
+	int i;
+	
+	for ( i=0; i < n; i++)
+	{
+		sum += *array++;
+	}
+	return sum;
+		
+}
 
