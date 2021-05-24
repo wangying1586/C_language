@@ -2,8 +2,11 @@
 #include <stdlib.h>
 
 // 整型变量argc----程序的参数数量，包括本身
-// 字符指针数组agrv[]----每个指针指向命令行的一个字符串
+// 字符指针数组argv[]----每个指针指向命令行的一个字符串
 // argv[0,1,2]分别指向命令行第1,2,3个字符串
+
+// getc(): 从输入stdin读取一个字符，putc():把字符写入到输出流stdout
+// getc(): int类型  遇到文件结束标志时，函数返回EOF=-1
 
 int main( int argc, char *argv[] )
 {
