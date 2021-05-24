@@ -1,0 +1,31 @@
+#include <iostream>  // ostream 定义了输入输出类
+
+// 名字空间：所有标识符在同一个特殊名字空间中定义，如不用，则需将std::cout-std::endl
+using namespace std;
+
+int addArray( int *array, int n);
+
+int main()
+{
+	int data[] = {0,1,2,3,4,5,6,7,8,9};
+	int size = sizeof(data) / sizeof(data[0]);
+	
+	/* cout是一个输出流对象- 属于biasic_ostream类的对象，其在iostream头文件中定义*/
+	// 支持重载-----<< 不同语境有不同应用
+	cout << "结果是:" << addArray(data,size) << endl;
+   	
+	return 0;
+}
+
+int addArray( int *array, int n )
+{
+	int sum = 0;
+	int i;
+	
+	for (i = 0; i < n; i++)
+	{
+		sum += *array++;
+	}
+	return sum;
+
+}
